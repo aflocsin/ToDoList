@@ -6,14 +6,32 @@
     }
 </style>
 <div class="push-top">
-    @if(session()->get('success'))
+    <!-- @if(session()->get('success'))
     <div class="alert alert-success">
         {{ session()->get('success') }}  
     </div><br />
-    @endif
-    <div>
+    @endif -->
+    <!-- <div>
         <h2>To Do List</h2>
-    </div>
+    </div> -->
+    <nav>
+        <div>
+            <ul>
+                <li>
+                    <a href="/login">Login</a>
+                </li>
+                <li>
+                    <a href="/register">Sign up</a>
+                </li>
+                <li>
+                    <form action="/logout" method="POST">
+                        @csrf
+                        <button>Logout</button>
+                    </form>       
+                </li>
+            </ul>
+        </div>
+    </nav>
     <table class="table">
         <thead>
             <tr class="table-warning">

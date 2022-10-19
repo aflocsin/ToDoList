@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TaskController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,7 +15,14 @@ use App\Http\Controllers\TaskController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-Route::resource('tasks', TaskController::class);
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+Route::get('/', [TaskController:: class, 'index'])->middleware('auth');
+Route::resource('/tasks', TaskController::class);
+// Route::get('/tasks', [TaskController::class, 'index']);
+Route::get('/register', [UserController::class, 'register']);
+Route::get('/login', [UserController::class, 'login'])->name('login')->middleware('guest');
+Route::post('/store', [UserController::class, 'store']);
+Route::post('/logout', [UserController::class, 'logout']);
+Route::post('/login/success', [UserController::class, 'success']);
